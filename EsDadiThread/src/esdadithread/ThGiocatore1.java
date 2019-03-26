@@ -14,7 +14,7 @@ public class ThGiocatore1 extends Thread {
     DatiCondivisi datiC = new DatiCondivisi();
     private int lancioDado;
 
-    public ThGiocatore1() {
+    public ThGiocatore1(DatiCondivisi datiC) {
         this.lancioDado = 0;
     }
 
@@ -31,9 +31,11 @@ public class ThGiocatore1 extends Thread {
         boolean finito = false;
         while (!finito) {
             lancioDado = (int) (Math.random() * 6);
+            datiC.setNum((int) (Math.random()) * 6);
             if (lancioDado == datiC.getNum()) {
                 datiC.punteggioGiocatore1();
                 if (datiC.getPunteggioGiocatore1() == 10) {
+                    System.out.println("HA VINTO IL GIOCATORE 1");
                     finito = true;
                 }
             }

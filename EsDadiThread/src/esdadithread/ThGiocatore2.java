@@ -11,9 +11,10 @@ package esdadithread;
  */
 public class ThGiocatore2 extends Thread {
 
+    DatiCondivisi datiC = new DatiCondivisi();
     private int lancioDado;
 
-    public ThGiocatore2() {
+    public ThGiocatore2(DatiCondivisi datiC) {
         this.lancioDado = 0;
     }
 
@@ -27,7 +28,18 @@ public class ThGiocatore2 extends Thread {
 
     @Override
     public void run() {
-
+        boolean finito = false;
+        while (!finito) {
+            lancioDado = (int) (Math.random() * 6);
+            datiC.setNum((int) (Math.random()) * 6);
+            if (lancioDado == datiC.getNum()) {
+                datiC.punteggioGiocatore2();
+                if (datiC.getPunteggioGiocatore2() == 10) {
+                    System.out.println("HA VINTO IL GIOCATORE 2");
+                    finito = true;
+                }
+            }
+        }
     }
 
 }
